@@ -19,7 +19,109 @@ For each generated code output, consider:
 
 ### Copilot
 
-TODO: evaluation
+Output 1:
+```python
+# Function to add a team member
+def add_team_member(team, member):
+    team.append(member)
+    return team
+
+# Function to assign a task to a team member
+def assign_task(team, tasks, member, task):
+    if member in team:
+        tasks[member] = task
+    else:
+        print(f"Member {member} is not in the team.")
+    return tasks
+
+# Function to get the task assigned to a team member
+def get_task(tasks, member):
+    return tasks.get(member, "No task assigned")
+
+# Function to display all team members and their tasks
+def display_team_tasks(team, tasks):
+    for member in team:
+        task = get_task(tasks, member)
+        print(f"{member}: {task}")
+
+# Example usage
+team = []
+tasks = {}
+
+# Adding team members
+team = add_team_member(team, "Alice")
+team = add_team_member(team, "Bob")
+
+# Assigning tasks
+tasks = assign_task(team, tasks, "Alice", "Develop feature X")
+tasks = assign_task(team, tasks, "Bob", "Test feature Y")
+
+# Displaying team tasks
+display_team_tasks(team, tasks)
+```
+
+Output 2:
+```python
+# Function to add a team member
+def add_team_member(team, member):
+    team.append(member)
+    return team
+
+# Function to assign a task to a team member
+def assign_task(tasks, member, task):
+    tasks[member] = task
+    return tasks
+
+# Function to manage team and tasks
+def manage_team_and_tasks(team, tasks, member, task):
+    team = add_team_member(team, member)
+    tasks = assign_task(tasks, member, task)
+    return team, tasks
+
+# Example usage
+team = []
+tasks = {}
+
+# Adding and assigning tasks to team members
+team, tasks = manage_team_and_tasks(team, tasks, "Alice", "Develop feature X")
+team, tasks = manage_team_and_tasks(team, tasks, "Bob", "Test feature Y")
+
+# Displaying team tasks
+for member in team:
+    print(f"{member}: {tasks[member]}")
+```
+
+Output 3:
+```python
+# Function to add a team member
+def add_team_member(team, member):
+    if member not in team:
+        team.append(member)
+    return team
+
+# Function to assign a task to a team member
+def assign_task(tasks, member, task):
+    tasks[member] = task
+    return tasks
+
+# Function to manage team and tasks
+def manage_team_and_tasks(team, tasks, member, task):
+    team = add_team_member(team, member)
+    tasks = assign_task(tasks, member, task)
+    return team, tasks
+
+# Example usage
+team = []
+tasks = {}
+
+# Adding and assigning tasks to team members
+team, tasks = manage_team_and_tasks(team, tasks, "Alice", "Develop feature X")
+team, tasks = manage_team_and_tasks(team, tasks, "Bob", "Test feature Y")
+
+# Displaying team tasks
+for member in team:
+    print(f"{member}: {tasks[member]}")
+```
 
 ### Other Single LLM: Ollama's codegemma:2b
 
