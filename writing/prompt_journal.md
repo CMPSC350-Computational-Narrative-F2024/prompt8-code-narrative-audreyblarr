@@ -1,21 +1,14 @@
 ## 1. Prompts Used
 
-Try at least three variations and use the same final prompts for both Copilot and another LLM
-
 - "Generate a series of Python-style functions that reflect teamwork and collaboration. Examples of collaboration may include functions that interact with one another or share data." (few-shot)
 - "Generate a series of Python-style functions that reflect teamwork and collaboration. There should be three separate Python functions: the first two as individual functions and a third utilizing the first two functions in collaboration. After the three functions, there should be a use case of the above functions to demonstrate the collaboration." (chain of thought)
 - "Generate a series of Python-style functions that reflect teamwork and collaboration. There should be three separate Python functions: the first two as individual functions and a third utilizing the first two functions in collaboration. After the three functions, there should be a use case of the above functions to demonstrate the collaboration. Ensure each function is present and includes enough specifics to serve as executable Python code." (chaining)
 
 ## 2. Prompting Strategy
 
-TODO: What was your strategy with prompting. What worked and what didn't work? Did you employ a specific prompting technique (zero-, few-, many-shot, chaining, chain of thought, meta prompting)?
+I found a chaining strategy of prompting to be the most efficient in producing the output I desired. Few-shot prompting provided a good foundation for knowing what changes I'd implement to the code, while chain of thought was helpful in listing out the exact steps I desired the output to follow. Chaining did a great job of combining the second, chain of thought prompt with follow-up prompts to ensure the output included all the elements it was supposed to and served as executable code that I could implement to produce an output.
 
 ## 3. Output Evaluation
-
-For each generated code output, consider:
-    - Narrative Structure: How does the organization reflect the theme? Is there a clear flow that resembles a narrative?
-    - Commentary and Documentation: How do Copilot’s comments contribute to the narrative? Do they add meaning to the code?
-    - Design Choices: Evaluate how Copilot's naming conventions, variable usage, and logic choices enhance or detract from the narrative.
 
 ### Copilot
 
@@ -200,4 +193,6 @@ def team_collaboration(name):
 
 ## 4. Reflection
 
-TODO: How did your prompt iterations impacted the narrative quality of the generated code? How did Copilot's suggestions supported or hindered the story within the code? 
+Firstly, the three prompts were crafted as I utilized Ollama's 'codegemma:2b' package to generate outputs. The first prompts, a simple few-shot approach, generated two functions that were very incomplete and ridden with random symbols that didn't serve any purpose. The functions didn't include any specified arguments, and only served to return 'print' statements and the value of 'data' incremented by 1. The purpose these functions would serve in terms of problem-solving remains very unclear. Next, the chain of thought prompting was intended to ensure the output followed very specified steps and included all the elements necessary to fulfill the narrative of collaboration. This output wasn't much different from the first, however, as it produced two functions titled 'first_function' and 'second_function' that each contained two arguments, and both functions were described to 'produce some operation' yet only returned the sum of the two arguments ('arg1' and 'arg2'). Then, there's a 'def' statement following the two functions signaling that there should be a third function, yet there wasn't a third function generated. This output was just as generic, unspecified, and incomplete as the first. While utilizing the third, chaining prompt, which included the second prompt with some further specifications, the generated output did show some improvement, but still not to the standards in which I desired. This output did include the two desired functions as well as a third use case function to tie the two functions together. However, the two functions only served to produce 'print' statements instead of including any sort of calculation or manipulation of data values, and the third function simply offered a way of printing both values at once. 
+
+In order to efficiently compare the talents of Ollama's 'codegemma:2b' to Github's Copilot feature, I utilized the same three prompts for each LLM. Through even the first few-shot prompt I immediately noticed improvement with the generated output. The first output included four functions with specified arguments, and each function has its own purpose of manipulating the data provided in the arguments. Then, a complete use case was provided by establishing data types for the arguments, utilizing the functions with specific, real-world values to the arguments. The second output followed the desired structure I laid out in the chain of thought prompt, by including two functions, then a third function combining the two, and a use case to follow. This output didn't vary much from the first, other than generating one less function to better fit the structure I intended. The third output was the exact same as the second output, which means that the second prompt was so efficient in providing the generated output I intended, that the extra specifications I included in the third prompt were essentially useless.
